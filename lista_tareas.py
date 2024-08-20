@@ -99,7 +99,7 @@ def main(page: ft.Page):
     # Iniciar, por default, en modo luz
     page.theme_mode = ft.ThemeMode.LIGHT
     # Agregar efecto de cambio progesivo de tema
-    page.overlay.append(ft.ProgressBar(visible=False))
+    #page.overlay.append(ft.ProgressBar(visible=False))
     page.update()
 
     # Función para alternar el tema y mostrar la barra de progreso
@@ -107,7 +107,7 @@ def main(page: ft.Page):
 
         # Mostrar la barra de progreso
 
-        page.overlay.append(ft.ProgressBar(visible=True))
+        #page.overlay.append(ft.ProgressBar(visible=True))
 
         # Alternar entre tema CLARO y OSCURO
 
@@ -123,8 +123,8 @@ def main(page: ft.Page):
         
         # Ocultar la barra de progreso
 
-        page.overlay.pop() # Permite el cambio de vista sin mostrar la barra de carga.
-        page.overlay.append(ft.ProgressBar(visible=False))
+        #page.overlay.pop() # Permite el cambio de vista sin mostrar la barra de carga.
+        #page.overlay.append(ft.ProgressBar(visible=False))
         page.update()
     
     boton_cambiar_tema = ft.IconButton(
