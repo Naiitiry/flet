@@ -15,8 +15,6 @@ def create_app():
 
     from .models import User, Task
 
-    from app.routes import home_bp
-    app.register_blueprint(home_bp, url_prefix='/home')
     from app.auth.ruotes import auth_bp
     app.register_blueprint(auth_bp, url_prefix='/auth')
     from app.tareas.ruotes import tasks_bp

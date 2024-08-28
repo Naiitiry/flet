@@ -8,7 +8,11 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
+<<<<<<< HEAD:agenda/front/venv/Scripts/activate.bat
 set VIRTUAL_ENV=C:\Users\rdanchuk\proyectos\flet\agenda\front\venv
+=======
+set VIRTUAL_ENV=C:\Users\Tangalanga\Desktop\Proyectos\flet\venv
+>>>>>>> d2f799309693788a26886ff6fe87b7a438616430:venv/Scripts/activate.bat
 
 if not defined PROMPT set PROMPT=$P$G
 

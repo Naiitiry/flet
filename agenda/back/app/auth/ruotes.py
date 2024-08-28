@@ -4,23 +4,16 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 auth_bp = Blueprint('auth',__name__)
 
-@auth_bp.route('/register',methods=['GET','POST'])
+@auth_bp.route('/register',methods=['POST'])
 def register():
     data = request.get_json()
-    username = data['username']
-    email = data['email']
-    password = data['password']
-    if User.query.filter_by(username=username).first() or User.query.filter_by(email=email).first():
-        return jsonify({'message': 'User already exists'}), 400
-    
-    user = User(username=username, email=email)
-    user.set_password(password)
+    user = User(username=data['username'],email=data['email'])
+    user.set_password(data['password'])
     db.session.add(user)
     db.session.commit()
-    return jsonify({'message': 'User registered successfully'}), 201
+    return jsonify({'message':'User registered successfully'}), 201
 
-
-@auth_bp.route('/login',methods=['GET','POST'])
+@auth_bp.route('/login',methods=['POST'])
 def login():
     data = request.get_json()
     user = User.query.filter_by(username=data['username']).first()
@@ -28,4 +21,3 @@ def login():
         # Implementar token o sesión
         return jsonify({'message':'Login successful'}), 200
     return jsonify({'message':'Invalid credentials'}), 401
-
