@@ -1,6 +1,5 @@
 import flet as ft
 import requests
-from auth.register import register_page
 
 API_BASE_URL = "http://127.0.0.1:5000"
 

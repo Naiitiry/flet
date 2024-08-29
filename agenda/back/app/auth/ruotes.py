@@ -1,10 +1,11 @@
 from flask import Blueprint,request,jsonify
+from flask_login import logout_user, login_required
 from app.models import User, db
 from werkzeug.security import generate_password_hash, check_password_hash
 
 auth_bp = Blueprint('auth',__name__)
 
-@auth_bp.route('/register',methods=['POST'])
+@auth_bp.route('/register',methods=['GET','POST'])
 def register():
     data = request.get_json()
     user = User(username=data['username'],email=data['email'])
@@ -13,7 +14,7 @@ def register():
     db.session.commit()
     return jsonify({'message':'User registered successfully'}), 201
 
-@auth_bp.route('/login',methods=['POST'])
+@auth_bp.route('/login',methods=['GET','POST'])
 def login():
     data = request.get_json()
     user = User.query.filter_by(username=data['username']).first()
@@ -22,8 +23,8 @@ def login():
         return jsonify({'message':'Login successful'}), 200
     return jsonify({'message':'Invalid credentials'}), 401
 
-@auth_bp.route('/logout')
+@auth_bp.route('/logout',methods=['GET','POST'])
+@login_required
 def logout():
-    db.session.pop('logged_in', None)
-    db.session.pop('username', None)
+    logout_user()
     return jsonify({'message': 'Logout successful'}), 200
