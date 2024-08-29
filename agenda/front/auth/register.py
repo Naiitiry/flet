@@ -10,7 +10,6 @@ def register_page(page: ft.Page, navigate_to_login):
         username = username_input.value
         password = password_input.value
         email = email_input.value
-
         try:
             response = requests.post(f"{API_BASE_URL}/auth/register", json={
                 "username": username,
@@ -31,7 +30,7 @@ def register_page(page: ft.Page, navigate_to_login):
                 print(f"Response Content: {response.json()}")
             except ValueError:
                 print("No JSON in response.")
-
+            page.update()
         except requests.exceptions.RequestException as error:
             result_text.value = f"Request failed: {error}"
         page.update()
@@ -43,18 +42,18 @@ def register_page(page: ft.Page, navigate_to_login):
     username_input = ft.TextField(label="Username")
     password_input = ft.TextField(label="Password", password=True)
     email_input = ft.TextField(label="Email")
-    result_text = ft.Text()
-
+    result_text = ft.Text("")
     register_button = ft.ElevatedButton(text="Register", on_click=register)
-    login_button = ft.ElevatedButton(text="Go to Login", on_click=lambda e: go_to_login(e))
+    login_button = ft.ElevatedButton(text="Go to Login", on_click=go_to_login)
 
     # Agrega los componentes a la página
-    page.add(
-        ft.Text("Register", size=24),
-        username_input,
-        password_input,
-        email_input,
-        register_button,
-        result_text,
-        login_button
-    )
+    return ft.Column(
+                controls=[
+                    ft.Text("Register", size=24),
+                    username_input,
+                    password_input,
+                    email_input,
+                    register_button,
+                    result_text,
+                    login_button]
+        )

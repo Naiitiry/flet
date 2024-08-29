@@ -21,3 +21,9 @@ def login():
         # Implementar token o sesión
         return jsonify({'message':'Login successful'}), 200
     return jsonify({'message':'Invalid credentials'}), 401
+
+@auth_bp.route('/logout')
+def logout():
+    db.session.pop('logged_in', None)
+    db.session.pop('username', None)
+    return jsonify({'message': 'Logout successful'}), 200
