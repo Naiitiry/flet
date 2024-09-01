@@ -3,9 +3,6 @@ from auth.login import login_page
 from auth.register import register_page
 from home.home import home_page
 
-
-API_BASE_URL = "http://127.0.0.1:5000"
-
 def main(page: ft.Page):
     page.title = "Task Management App"
     page.window.width = 800
@@ -23,8 +20,9 @@ def main(page: ft.Page):
             page.views.append(register2)
 
         if page.route == '/home/home':
-            home2 = home_page(page, lambda: page.go('/auth/login'))
-            page.views.append(home2)
+            home = home_page(page, lambda: page.go('/auth/login'))
+            page.views.append(home)
+
         page.update()
         
     # Función para manejar el pop de las vistas

@@ -12,8 +12,8 @@ def home_page(page: ft.Page,on_logout: callable):
         page.session.set("logged_in", False)
         page.session.remove('username')
         page.session.clear()
-        page.update()
         page.go("/auth/login")  # Redirige al login después del logout
+        
 
     # Crear la tarjeta de usuario
     user_card_component = user_card(page, username, handle_logout)

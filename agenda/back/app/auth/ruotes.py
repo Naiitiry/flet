@@ -24,7 +24,6 @@ def login():
     return jsonify({'message':'Invalid credentials'}), 401
 
 @auth_bp.route('/logout',methods=['GET','POST'])
-@login_required
 def logout():
-    logout_user()
-    return jsonify({'message': 'Logout successful'}), 200
+    db.session.close()
+    return jsonify({'message':'Logout succesfull'})
