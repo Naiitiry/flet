@@ -3,7 +3,7 @@ import requests
 
 API_BASE_URL = "http://127.0.0.1:5000"
 
-def user_card(page: ft.Page, username: str, on_logout: callable) -> ft.Column:
+def user_card(page: ft.Page, username: str,email: str, on_logout: callable) -> ft.Column:
 
     def logout(e):
         try:
@@ -37,7 +37,8 @@ def user_card(page: ft.Page, username: str, on_logout: callable) -> ft.Column:
             page.update()
 
     # Crear componentes de la tarjeta
-    user_info = ft.Text(f"User: {username}", size=20)
+    user_info = ft.Text(f"{username}", size=20)
+    user_email_info = ft.Text(f"{email}", size=20)
     logout_button = ft.ElevatedButton(text="Logout", on_click=logout)
 
     # Crear la tarjeta
