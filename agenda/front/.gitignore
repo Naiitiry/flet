@@ -200,3 +200,7 @@ cython_debug/
 #.idea/
 
 todolistvenv/
+/migrations
+.migrations/
+migrations/
+/migrations/
